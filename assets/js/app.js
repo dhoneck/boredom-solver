@@ -3,8 +3,15 @@ var activityContainer = document.getElementById('activity-container');
 
 function getApi(e) {
   e.preventDefault();
-  console.log('Button clicked');
+  
   var requestUrl = 'https://www.boredapi.com/api/activity/';
+  var activityType = document.getElementById('type-field').value
+  
+  if (activityType != 'all') {
+    requestUrl += '?type=' + activityType;
+  }
+  console.log('Fetching activity from: ' + requestUrl);
+  
 
   fetch(requestUrl)
     .then(function (response) {
